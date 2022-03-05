@@ -13,16 +13,21 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) =>
+
+app.get('/notes', (req, res) =>
 
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 app.get('/api/notes', (req, res) => {
-
-    res.status(200).json(`${req.method} entry received`);
-
-    console.info(`${req.method} entry received`);
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            res.status(200).json(data);
+            console.log(data);
+        }
+    });
 });
 
 app.post('/api/notes', (req, res) => {
@@ -70,6 +75,11 @@ app.post('/api/notes', (req, res) => {
 
     }
 });
+
+app.get('*', (req, res) =>
+
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 app.listen(PORT, () =>
     console.log(`App listening at http://localhost:${PORT} 👍`)
