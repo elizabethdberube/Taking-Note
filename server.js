@@ -2,8 +2,10 @@ const { application } = require('express');
 const express = require('express');
 //const js = require('.')
 const fs = require('fs');
+const { v4: uuidv4 } = require("uuid");
 
 const path = require('path');
+const id = uuidv4();
 
 const app = express();
 const PORT = 3001;
@@ -36,13 +38,14 @@ app.post('/api/notes', (req, res) => {
 
 
 
-    const { title, text } = req.body;
+    const { title, note } = req.body;
 
-    if (title && text) {
+    if (title && note) {
 
         const newNote = {
             title,
-            text
+            note,
+            id,
         }
 
         fs.readFile('./db/db.json', 'utf8', (err, data) => {
