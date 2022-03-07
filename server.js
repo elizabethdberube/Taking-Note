@@ -114,30 +114,6 @@ app.delete('/api/notes/:id', (req, res) => {
         });
 });
 
-app.post('/api/notes', (req, res) => {
-    if (req.body) {
-
-        const newNote = {
-            title,
-            note,
-            id,
-        };
-        fs.readFile('./db/db.json', 'utf8', (err, data) => {
-            if (err) {
-                console.error(err);
-            } else {
-
-                const parsedNote = JSON.parse(data);
-                parsedNote.push(newNote);
-                fs.writeFile('./db/db.json', JSON.stringify(outcome, null, 4),
-                    (writeErr) =>
-                        writeErr ? console.error(writeErr) : console.info('New array!'))
-                res.join(`New array`);
-
-            }
-        });
-    }
-});
 
 //wildcard directs user to home
 app.get('*', (req, res) =>
