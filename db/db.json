@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "title": "First note",
+        "note": "Note like things.",
+        "id": "53134815-4f63-438a-9472-7356d6a0bc35"
+    },
+    {
+        "title": "Second note",
+        "note": "More notes.",
+        "id": "2587d854-a163-4a60-8568-1acf573cc955"
+    },
+    {
+        "title": "Third note",
+        "note": "Note. ",
+        "id": "7b0a7cfd-f45e-4bbb-85fd-8d22d9b69403"
+    }
+]
