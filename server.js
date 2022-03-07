@@ -114,7 +114,6 @@ app.delete('/api/notes/:id', (req, res) => {
         });
 });
 
-
 //wildcard directs user to home
 app.get('*', (req, res) =>
 
