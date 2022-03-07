@@ -11,6 +11,7 @@
   "dependencies": {
     "clog": "^0.1.6",
     "express": "^4.16.4",
+    "util": "^0.12.4",
     "uuid": "^8.3.2"
   }
 }

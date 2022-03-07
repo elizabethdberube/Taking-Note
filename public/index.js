@@ -18,13 +18,12 @@ if (areweOnNotePage) {
 // Show an element
 const show = (elem) => {
   elem.style.display = 'inline';
-  console.log(show);
+
 };
 
 // Hide an element
 const hide = (elem) => {
   elem.style.display = 'none';
-  console.log(hide);
 
 };
 
@@ -54,13 +53,14 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
-const deleteNote = (id) =>
-  fetch(`/api/notes/${id}`, {
+const deleteNote = (id) => {
+  return fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
+}
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -76,8 +76,6 @@ const renderActiveNote = () => {
     noteTitle.value = '';
     noteText.value = '';
   }
-  console.log(activeNote);
-  console.log(renderActiveNote);
 };
 
 const handleNoteSave = () => {
@@ -92,7 +90,7 @@ const handleNoteSave = () => {
     renderActiveNote();
 
   });
-  console.log(handleNoteSave);
+
 };
 
 // Delete the clicked note
@@ -105,7 +103,7 @@ const handleNoteDelete = (e) => {
 
   if (activeNote.id === noteId) {
     activeNote = {};
-    console.log(handleNoteDelete);
+
   }
 
   deleteNote(noteId).then(() => {
@@ -119,7 +117,7 @@ const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
-  console.log(handleNewNoteView);
+
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
@@ -134,14 +132,13 @@ const handleRenderSaveBtn = () => {
   } else {
     show(saveNoteBtn);
   }
-  console.log(handleRenderSaveBtn);
 };
 
 let noteListItems = [];
 // Render the list of note titles
 const renderNoteList = async (notes) => {
 
-  console.log(notes);
+
   let jsonNotes = JSON.parse(await notes);
   if (areweOnNotePage) {
     noteListItems.forEach((el) => (noteList[0].removeChild(el)));
@@ -176,7 +173,7 @@ const renderNoteList = async (notes) => {
       delBtnEl.addEventListener('click', handleNoteDelete);
 
       liEl.append(delBtnEl);
-      console.log(note);
+
     }
 
     return liEl;
