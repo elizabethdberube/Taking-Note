@@ -73,7 +73,8 @@ const renderActiveNote = () => {
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
-    noteText.value = activeNote.text;
+    noteText.value = activeNote.note;
+
   } else {
     noteTitle.removeAttribute('readonly');
     noteText.removeAttribute('readonly');
@@ -89,7 +90,7 @@ const handleNoteSave = () => {
     note: noteText.value,
 
   };
-  console.log(newNote);
+
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -143,9 +144,9 @@ let noteListItems = [];
 // Render the list of note titles
 const renderNoteList = async (notes) => {
 
-  console.log(notes);
   let jsonNotes = JSON.parse(await notes);
   if (areweOnNotePage) {
+
     noteListItems.forEach((el) => (noteList[0].removeChild(el)));
     noteListItems = [];
 
@@ -192,14 +193,12 @@ const renderNoteList = async (notes) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
     noteListItems.push(li);
-    console.log(li);
+
   });
 
   if (areweOnNotePage) {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
-  console.log(noteList);
-  console.log(note);
 
 };
 
@@ -211,7 +210,7 @@ if (areweOnNotePage) {
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
-  console.log(getAndRenderNotes);
+
 }
 
 getAndRenderNotes();

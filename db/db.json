@@ -1,22 +1,17 @@
 [
     {
         "title": "First note",
-        "note": "A note",
-        "id": "2474f085-bc4d-441d-9efe-c62451b7b72b"
+        "note": "Note like things. ",
+        "id": "fdff6e64-9327-4df2-a3f3-87e708e8a2ea"
     },
     {
         "title": "Second note",
-        "note": "A note",
-        "id": "d08b0e14-926a-489c-8001-fb5c2b6cc5b9"
+        "note": "More note like things",
+        "id": "59732868-161c-4e13-a3cd-7d0c460a992f"
     },
     {
         "title": "Third note",
-        "note": "A note",
-        "id": "6d4ba707-c79f-4e6c-8282-17a29c8ddd36"
-    },
-    {
-        "title": "Fourth note",
-        "note": "A note",
-        "id": "e03815d2-d6e8-4f49-9a63-4f543a60bdad"
+        "note": "A note.",
+        "id": "2e49f630-0f3c-45c1-978b-f8cbc2b20210"
     }
 ]
