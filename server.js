@@ -1,9 +1,11 @@
 const { application } = require('express');
 const express = require('express');
+//const app = require('express').Router();
 const fs = require('fs');
 const util = require('util');
 const { v4: uuidv4 } = require("uuid");
 const path = require('path');
+const { readThenAppend, writeAFile, } = require('./helpers/helperCode');
 
 const app = express();
 
@@ -49,38 +51,17 @@ app.post('/api/notes', (req, res) => {
             title,
             note,
             id: uuidv4(),
-        }
-
-        fs.readFile('./db/db.json', 'utf8', (err, data) => {
-            if (err) {
-                console.error(err);
-            } else {
-
-                const parsedNote = JSON.parse(data);
-                parsedNote.push(newNote);
-
-                fs.writeFile('./db/db.json', JSON.stringify(parsedNote, null, 4),
-                    (writeErr) =>
-                        writeErr
-                            ? console.error(writeErr)
-                            : console.info('Note saved!')
-
-                );
-            }
-        });
-
-        const response = {
-            status: 'success',
-            body: newNote
         };
 
-        console.log(response);
-        res.status(200).json(response);
-    } else {
-        res.status(500).json('Error in taking note');
 
+        readThenAppend(newNote, './db/db.json');
+        res.json('Note save!');
+    } else {
+        res.error('Error saving note');
     }
+
 });
+
 
 //retrieving all the notes
 app.get('/api/notes', (req, res) => {

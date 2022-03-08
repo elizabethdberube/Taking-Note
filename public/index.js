@@ -31,14 +31,15 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
+
   fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-
   })
     .then((respnse) => respnse.json())
+
     .then((data) => data)
     .catch((error) => {
       console.error('Error:', error);
@@ -50,17 +51,20 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
+
     body: JSON.stringify(note),
+
   });
 
-const deleteNote = (id) => {
-  return fetch(`/api/notes/${id}`, {
+
+const deleteNote = (id) =>
+  fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-}
+
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -85,6 +89,7 @@ const handleNoteSave = () => {
     note: noteText.value,
 
   };
+  console.log(newNote);
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -138,13 +143,13 @@ let noteListItems = [];
 // Render the list of note titles
 const renderNoteList = async (notes) => {
 
-
+  console.log(notes);
   let jsonNotes = JSON.parse(await notes);
   if (areweOnNotePage) {
     noteListItems.forEach((el) => (noteList[0].removeChild(el)));
     noteListItems = [];
-  }
 
+  }
 
 
   // Returns HTML element with or without a delete button
@@ -187,11 +192,15 @@ const renderNoteList = async (notes) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
     noteListItems.push(li);
+    console.log(li);
   });
 
   if (areweOnNotePage) {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
+  console.log(noteList);
+  console.log(note);
+
 };
 
 // Gets notes from the db and renders them to the sidebar
