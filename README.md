@@ -56,4 +56,4 @@ liz@durableprogramming.com
 
 ![image](./images/Screenshot.png)
 
-![image](./images/Screenshot2.png)
+![image](./images/Screenshot3.png)
