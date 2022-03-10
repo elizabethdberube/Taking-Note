@@ -21,7 +21,7 @@ const show = (elem) => {
 
 };
 
-// Hide an element
+// hide an element
 const hide = (elem) => {
   elem.style.display = 'none';
 
